@@ -3,12 +3,14 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        IO io = new IO();
+
         // count of lines in system
         int n = 0;
         // matrix
         int[][] arr;
         // extension of matrix ( b array )
-        int[] b = new int[n];
+        int[] b;
         // temporary massive which is used to copy elements in lines if arr[i][i] = 0;
         int[] temp = new int[n];
         // result array of unknown variables
@@ -20,32 +22,22 @@ public class Main {
         // variable need to find the unknown variables (x-es)
         int s;
 
-        String result;
-        int[] arr_res = new int[0];
-
-        if (args.length == 1 ) {
-            System.out.println("You has selected file: " + args[0] );
-            File input = new File(args[0]);
-            if (!input.canRead()) System.err.println("Cannot open file!\nPlease check correctness of input file!");
-
-            BufferedReader br = new BufferedReader(new FileReader(input));
-            result = br.readLine();
-            arr_res = Arrays.stream(result.split(" ")).mapToInt(Integer::parseInt).toArray();
-            n = arr_res[0];
-
-        }
-        if (args.length == 0 ) {
-            System.out.println("You hasn't select input file.\nPlease, enter input data (n - count of lines of system, matrix elements, extended matrix elements)");
-
-        }
+        int[] arr_res = io.readData( args.length==0 ? "" : args[0]);
+        n = arr_res[0];
 
         arr = new int[n][n];
+        b = new int[n];
+
+        // Fulling matrix by result array which has got from data input
         for (int i = 0; i < n; i++){
             for (int k = 0; k < n; k++){
                 System.out.println(arr_res[k+(i*n)+1]);
                 arr[i][k] = arr_res[k+(i*n)+1];
             }
+            b[i] = arr_res[(n*n)+i+1];
         }
+
+
 
         // straight stroke (process of exception an elements of matrix to get triangle-matrix)
         for(int i = 1; i < n ; i++){
@@ -72,5 +64,6 @@ public class Main {
     }
 
     private static void swapLines(int[] ints) {
+
     }
 }
