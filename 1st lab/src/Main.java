@@ -1,9 +1,12 @@
+import java.io.*;
+import java.util.Arrays;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // count of lines in system
         int n = 0;
         // matrix
-        int[][] arr = new int[n][n];
+        int[][] arr;
         // extension of matrix ( b array )
         int[] b = new int[n];
         // temporary massive which is used to copy elements in lines if arr[i][i] = 0;
@@ -16,6 +19,33 @@ public class Main {
         int c;
         // variable need to find the unknown variables (x-es)
         int s;
+
+        String result;
+        int[] arr_res = new int[0];
+
+        if (args.length == 1 ) {
+            System.out.println("You has selected file: " + args[0] );
+            File input = new File(args[0]);
+            if (!input.canRead()) System.err.println("Cannot open file!\nPlease check correctness of input file!");
+
+            BufferedReader br = new BufferedReader(new FileReader(input));
+            result = br.readLine();
+            arr_res = Arrays.stream(result.split(" ")).mapToInt(Integer::parseInt).toArray();
+            n = arr_res[0];
+
+        }
+        if (args.length == 0 ) {
+            System.out.println("You hasn't select input file.\nPlease, enter input data (n - count of lines of system, matrix elements, extended matrix elements)");
+
+        }
+
+        arr = new int[n][n];
+        for (int i = 0; i < n; i++){
+            for (int k = 0; k < n; k++){
+                System.out.println(arr_res[k+(i*n)+1]);
+                arr[i][k] = arr_res[k+(i*n)+1];
+            }
+        }
 
         // straight stroke (process of exception an elements of matrix to get triangle-matrix)
         for(int i = 1; i < n ; i++){
