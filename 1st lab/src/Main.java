@@ -8,25 +8,25 @@ public class Main {
         // count of lines in system
         int n = 0;
         // matrix
-        int[][] arr;
+        float[][] arr;
         // extension of matrix ( b array )
-        int[] b;
+        float[] b;
         // temporary massive which is used to copy elements in lines if arr[i][i] = 0;
-        int[] temp = new int[n];
+        float[] temp = new float[n];
         // result array of unknown variables
-        int[] x = new int[n];
+//        float[] x = new float[n];
         // counter of swap lines (if the count of swaps is equal to possible count of swaps then stop while cycle)
         int stop = 0;
         // coefficient of exception
-        int c;
+        float c;
         // variable need to find the unknown variables (x-es)
-        int s;
+        float s;
 
         int[] arr_res = io.readData( args.length==0 ? "" : args[0]);
         n = arr_res[0];
 
-        arr = new int[n][n];
-        b = new int[n];
+        arr = new float[n][n];
+        b = new float[n];
 
         // Fulling matrix by result array which has got from data input
         for (int i = 0; i < n; i++){
@@ -38,12 +38,22 @@ public class Main {
         }
 
 
+        for (float[] anInt : arr) {
+            System.out.println(Arrays.toString(anInt));
+        }
 
         // straight stroke (process of exception an elements of matrix to get triangle-matrix)
-        for(int i = 1; i < n ; i++){
-            while (arr[i][i] != 0 && stop != n - i ){
-                swapLines(arr[i]);
+        for(int i = 0; i < n - 1 ; i++){
+            while (arr[i][i] == 0  ){
+                if (stop == n) {
+                    System.err.println("The error in swapping lines!");
+                    System.exit(0);
+                }
+                swapLines(arr, i);
+                stop++;
             }
+
+
             for (int k = i+1; k < n; k++){
                 c = arr[k][i] / arr[i][i];
                 arr[k][i] = 0;
@@ -52,18 +62,31 @@ public class Main {
                 }
                 b[k] = b[k] - c * b[i];
             }
+            stop = 0;
+            System.out.println();
+            for (float[] anInt : arr) {
+                System.out.println(Arrays.toString(anInt));
+            }
         }
+
+        float[] x = new float[n];
         // reverse stroke (process of getting an unknown variables)
-        for (int i = n ; i > 0 ; --i){
+        for (int i = n - 1 ; i > 0 ; --i){
             s = 0;
             for (int j = i+1; j<n; j++){
                 s = s + arr[i][j]*x[j];
             }
             x[i] = (b[i] - s)/arr[i][i];
         }
+        System.out.println("RESULT VECTOR-COLUMN OF X-ES ");
+        System.out.println(Arrays.toString(x));
     }
 
-    private static void swapLines(int[] ints) {
-
+    private static void swapLines(float[][] ints, int pos) {
+        float[] temp = ints[pos];
+        if (ints.length - 1 - pos >= 0) {
+            System.arraycopy(ints, pos + 1, ints, pos, ints.length - 1 - pos);
+        }
+        ints[ints.length-1] = temp;
     }
 }
