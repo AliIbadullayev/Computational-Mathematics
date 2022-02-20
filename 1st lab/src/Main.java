@@ -23,14 +23,13 @@ public class Main {
         float s;
         // count of swaps
         int swaps = 0;
-        float[] disp;
 
         int[] arr_res = io.readData( args.length==0 ? "" : args[0]);
         n = arr_res[0];
+        if (n>20) System.exit(-1);
         arr = new float[n][n];
         b = new float[n];
         x = new float[n];
-        disp = new float[n];
 
         // Fulling matrix by result array which has got from data input
         for (int i = 0; i < n; i++){
@@ -92,7 +91,10 @@ public class Main {
             x[i] = (b[i] - s)/arr[i][i] == -0 ? 0:(b[i] - s)/arr[i][i] ;
         }
         System.out.println();
-        System.out.println("RESULT VECTOR-COLUMN OF X-ES ");
+        System.out.println("\t<<RESULTS>>");
+        System.out.println("<<Triangle Matrix>>");
+        io.showExtendedMatrix(arr,b);
+        System.out.println();
         System.out.println("Det A =\t" + findDeterminant(arr, swaps));
         System.out.print("X =\t");
         System.out.println(Arrays.toString(x));
