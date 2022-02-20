@@ -19,7 +19,7 @@ public class IO {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
         result = br.readLine();
-        arr_res = Arrays.stream(result.split(" ")).mapToInt(Integer::parseInt).toArray();
+        arr_res = Arrays.stream(result.split("\\s+")).mapToInt(Integer::parseInt).toArray();
         n = arr_res[0];
 
         if (arr_res.length!=n*n+n+1){
@@ -27,5 +27,15 @@ public class IO {
             System.exit(-1);
         }
         return arr_res;
+    }
+    public void showExtendedMatrix(float[][] arr, float[] b){
+        System.out.print("A =");
+        for (float[] anInt : arr) {
+            System.out.println("\t"+Arrays.toString(anInt));
+        }
+        System.out.println();
+        System.out.print ("B =\t");
+        System.out.println(Arrays.toString(b));
+
     }
 }
