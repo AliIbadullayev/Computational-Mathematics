@@ -6,7 +6,7 @@ public class Main {
         IO io = new IO();
 
         // count of lines in system
-        int n = 0;
+        int n;
         // matrix
         float[][] arr;
         float[][] arr_copy;
@@ -24,8 +24,8 @@ public class Main {
         // count of swaps
         int swaps = 0;
 
-        int[] arr_res = io.readData( args.length==0 ? "" : args[0]);
-        n = arr_res[0];
+        float[] arr_res = io.readData( args.length==0 ? "" : args[0]);
+        n = (int) arr_res[0];
         if (n>20) System.exit(-1);
         arr = new float[n][n];
         b = new float[n];

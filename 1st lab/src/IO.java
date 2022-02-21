@@ -2,10 +2,11 @@ import java.io.*;
 import java.util.Arrays;
 
 public class IO {
-    public int[] readData(String args) throws IOException {
+    public float[] readData(String args) throws IOException {
         BufferedReader br;
         String result;
-        int[] arr_res;
+        String[] arr_res;
+        float[] matrix;
         int n;
 
         if (!args.equals("") ) {
@@ -19,14 +20,18 @@ public class IO {
             br = new BufferedReader(new InputStreamReader(System.in));
         }
         result = br.readLine();
-        arr_res = Arrays.stream(result.split("\\s+")).mapToInt(Integer::parseInt).toArray();
-        n = arr_res[0];
+        arr_res = result.split("\\s+");
+        n = Integer.parseInt(arr_res[0]);
+        matrix = new float[n*n + 1 +n];
+        for (int i = 0; i<n*n + 1 +n; i++){
+            matrix [i] = Float.parseFloat(arr_res[i]);
+        }
 
         if (arr_res.length!=n*n+n+1){
             System.err.println("Not correct input data in file!\nCheck amount of elements!\n<n - count of lines of system, matrix elements, extended matrix elements>");
             System.exit(-1);
         }
-        return arr_res;
+        return matrix;
     }
     public void showExtendedMatrix(float[][] arr, float[] b){
         System.out.print("A =");
