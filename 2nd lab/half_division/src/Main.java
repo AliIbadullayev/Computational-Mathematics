@@ -32,7 +32,7 @@ public class Main {
             System.out.println();
         }
         System.out.println("<<RESULT>>");
-        System.out.println("End t " + n + " iteration");
+        System.out.println("Ends at " + n + " iteration");
         System.out.format("x -> %.3f\n" , x);
         System.out.format("f(x) -> %.3f\n", getFunc(num, x));
         System.out.format("|a-b| -> %.3f\n" , Math.abs(a-b));
