@@ -39,15 +39,5 @@ public class IO {
         }
         return output;
     }
-    public void showExtendedMatrix(float[][] arr, float[] b){
-        System.out.print("A =");
-        for (float[] anInt : arr) {
-            System.out.println("\t"+Arrays.toString(anInt));
-        }
-        System.out.println();
-        System.out.print ("B =\t");
-        System.out.println(Arrays.toString(b));
-
-    }
 }
 
