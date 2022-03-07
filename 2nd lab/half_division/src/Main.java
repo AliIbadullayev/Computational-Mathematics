@@ -21,7 +21,6 @@ public class Main {
             System.exit(-1);
         }
         while (Math.abs(a-b)>epsilon && Math.abs(getFunc(num, x))>=epsilon){
-            x = (a+b)/2;
             if (getFunc(num, a)*getFunc(num, x)>0 ) a = x;
             else b = x;
             n++;
@@ -30,6 +29,7 @@ public class Main {
             System.out.format("f(x) -> %.3f\n", getFunc(num, x));
             System.out.format("|a-b| -> %.3f\n" , Math.abs(a-b));
             System.out.println();
+            x = (a+b)/2;
         }
         System.out.println("<<RESULT>>");
         System.out.println("Ends at " + n + " iteration");
