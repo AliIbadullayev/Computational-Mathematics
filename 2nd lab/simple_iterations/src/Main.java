@@ -18,7 +18,7 @@ public class Main {
             System.exit(-1);
         }
         if (!verify(num,lambda, a, b )) {
-            System.err.println("This function has no root");
+            System.err.println("This function has no root or has more than one root at this interval!");
             System.exit(-1);
         }
         double x0 = getX0(num, lambda, a, b);
@@ -30,16 +30,18 @@ public class Main {
             System.out.println("Iteration " + n);
             System.out.format("x"+n+" -> %.3f\n" , x1);
             System.out.format("f(x"+n+") -> %.3f\n", getFunc(num, x1));
-            System.out.format("|a-b| -> %.3f\n" , Math.abs(x0-x1));
+            System.out.format("|x"+n+"-x"+(n-1)+"| -> %.3f\n" , Math.abs(x0-x1));
             System.out.println();
             x0 = x1;
             x1 = getFiFunc(num, lambda, x0);
         }
+        n++;
 
         System.out.println("<<RESULT>>");
+        System.out.println("Ends at "+ n +" iterations");
         System.out.format("x"+n+" -> %.3f\n" , x1);
         System.out.format("f(x"+n+") -> %.3f\n", getFunc(num, x1));
-        System.out.format("|a-b| -> %.3f\n" , Math.abs(x0-x1));
+        System.out.format("|x"+n+"-x"+(n-1)+"| -> %.3f\n" , Math.abs(x0-x1));
         System.out.println();
     }
 
@@ -68,11 +70,11 @@ public class Main {
 
     static double getFiFunc(int num, double lambda, double x){
         if (num == 1) {
-            return (-8.1*x*x-2.96*x+19.23)*lambda + x;
+            return (-2.7 * Math.pow(x, 3) - 1.48 * Math.pow(x, 2) + 19.23 * x + 6.35)*lambda + x;
         } else if (num == 2) {
-            return (3*x*x-3.78*x-2)*lambda + x;
+            return (Math.pow(x, 3) - 1.89 * Math.pow(x, 2) - 2 * x + 1.76)*lambda + x;
         } else
-            return (-6*x*x+2*x+Math.cos(x))*lambda + x;
+            return (Math.sin(x) - 2 * Math.pow(x, 3) + Math.pow(x, 2))*lambda + x;
     }
 
     static double getDeriveFiFunc(int num, double lambda, double x){
@@ -90,6 +92,6 @@ public class Main {
 
     //true - if all is good verified, else - false
     static boolean verify(int num, double lambda, double a, double b){
-        return Math.abs(getDeriveFiFunc(num, lambda, a)) < 1 || Math.abs(getDeriveFiFunc(num, lambda, b)) < 1;
+        return Math.abs(getDeriveFiFunc(num, lambda, a)) < 1 || Math.abs(getDeriveFiFunc(num, lambda, b)) < 1 && getFunc(num, a) * getFunc(num, b) < 0;
     }
 }
