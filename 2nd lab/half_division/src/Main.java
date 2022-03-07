@@ -9,6 +9,13 @@ public class Main {
         double a = inputData[1];
         double b = inputData[2];
         double epsilon = inputData[3];
+        int afterComma = 0;
+        double t = 1;
+        while (t != epsilon){
+            t= t/10;
+            afterComma++;
+        }
+
         double x = (a+b)/2;
         // count of iterations
         int n = 0;
@@ -25,17 +32,17 @@ public class Main {
             else b = x;
             n++;
             System.out.println("Iteration " + n);
-            System.out.format("x -> %.3f\n" , x);
-            System.out.format("f(x) -> %.3f\n", getFunc(num, x));
-            System.out.format("|a-b| -> %.3f\n" , Math.abs(a-b));
+            System.out.format("x -> %."+afterComma+"f\n" , x);
+            System.out.format("f(x) -> %."+afterComma+"f\n", getFunc(num, x));
+            System.out.format("|a-b| -> %."+afterComma+"f\n" , Math.abs(a-b));
             System.out.println();
             x = (a+b)/2;
         }
         System.out.println("<<RESULT>>");
         System.out.println("Ends at " + n + " iteration");
-        System.out.format("x -> %.3f\n" , x);
-        System.out.format("f(x) -> %.3f\n", getFunc(num, x));
-        System.out.format("|a-b| -> %.3f\n" , Math.abs(a-b));
+        System.out.format("x -> %."+afterComma+"f\n" , x);
+        System.out.format("f(x) -> %."+afterComma+"f\n", getFunc(num, x));
+        System.out.format("|a-b| -> %."+afterComma+"f\n" , Math.abs(a-b));
         System.out.println();
 
     }

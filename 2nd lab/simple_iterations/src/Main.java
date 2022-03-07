@@ -10,6 +10,12 @@ public class Main {
         double b = inputData[2];
         double epsilon = inputData[3];
         double lambda = getLambda(num, a, b);
+        int afterComma = 0;
+        double t = 1;
+        while (t != epsilon){
+            t= t/10;
+            afterComma++;
+        }
 
         // count of iterations
         int n = 0;
@@ -28,9 +34,9 @@ public class Main {
             n++;
 
             System.out.println("Iteration " + n);
-            System.out.format("x"+n+" -> %.3f\n" , x1);
-            System.out.format("f(x"+n+") -> %.3f\n", getFunc(num, x1));
-            System.out.format("|x"+n+"-x"+(n-1)+"| -> %.3f\n" , Math.abs(x0-x1));
+            System.out.format("x"+n+" -> %."+afterComma+"f\n" , x1);
+            System.out.format("f(x"+n+") -> %."+afterComma+"f\n", getFunc(num, x1));
+            System.out.format("|x"+n+"-x"+(n-1)+"| -> %."+afterComma+"f\n" , Math.abs(x0-x1));
             System.out.println();
             x0 = x1;
             x1 = getFiFunc(num, lambda, x0);
@@ -39,9 +45,9 @@ public class Main {
 
         System.out.println("<<RESULT>>");
         System.out.println("Ends at "+ n +" iterations");
-        System.out.format("x"+n+" -> %.3f\n" , x1);
-        System.out.format("f(x"+n+") -> %.3f\n", getFunc(num, x1));
-        System.out.format("|x"+n+"-x"+(n-1)+"| -> %.3f\n" , Math.abs(x0-x1));
+        System.out.format("x"+n+" -> %."+afterComma+"f\n" , x1);
+        System.out.format("f(x"+n+") -> %."+afterComma+"f\n", getFunc(num, x1));
+        System.out.format("|x"+n+"-x"+(n-1)+"| -> %."+afterComma+"f\n" , Math.abs(x0-x1));
         System.out.println();
     }
 
