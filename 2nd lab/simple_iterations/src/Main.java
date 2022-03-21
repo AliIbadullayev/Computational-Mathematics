@@ -56,20 +56,21 @@ public class Main extends JComponent{
 
         // count of iterations
         int n = 0;
+        double x0 = getX0(num, lambda, a, b);
+        double x1 = getFiFunc(num, lambda, x0);
         if (num > 3 || num < 1) {
             System.err.println("In program is no such function;");
             System.exit(-1);
         }
-        if (!verify(num,lambda, a, b)) {
-            System.err.println("This function has no root or has more than one root at this interval!");
+        if (!verify(num,lambda, x0)) {
+            System.err.println("The function diverges on a given interval!");
             System.exit(-1);
         }
         if (!correctInput(epsilon)){
             System.err.println("Check the correctness of epsilon!");
             System.exit(-1);
         }
-        double x0 = getX0(num, lambda, a, b);
-        double x1 = getFiFunc(num, lambda, x0);
+
         System.out.format("x"+n+" -> %.3f\n" , x0);
         while (Math.abs(x0-x1)>=epsilon){
             n++;
@@ -115,11 +116,11 @@ public class Main extends JComponent{
 
     static double getDeriveFunc(int num, double x){
         if (num == 1) {
-            return -8.1*x*x-2.96*x+19.23;
+            return (-8.1*x*x)-(2.96*x)+19.23;
         } else if (num == 2) {
-            return 3*x*x-3.78*x-2;
+            return (3*x*x)-(3.78*x)-2;
         } else
-            return -6*x*x+2*x+Math.cos(x);
+            return (-6*x*x)+(2*x)+Math.cos(x);
     }
 
     static double getLambda(int num, double a, double b){
@@ -150,8 +151,8 @@ public class Main extends JComponent{
     }
 
     //true - if all is good verified, else - false
-    static boolean verify(int num, double lambda, double a, double b){
-        return Math.abs(getDeriveFiFunc(num, lambda, a)) < 1 || Math.abs(getDeriveFiFunc(num, lambda, b)) < 1 && getFunc(num, a) * getFunc(num, b) < 0;
+    static boolean verify(int num, double lambda, double x){
+        return Math.abs(getDeriveFiFunc(num, lambda, x)) < 1;
     }
 
     static boolean correctInput(double epsilon){
