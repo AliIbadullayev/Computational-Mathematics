@@ -3,29 +3,21 @@ import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.text.DecimalFormat;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.List;
 import java.util.function.DoubleFunction;
 
 public class Main {
-    // x∈ [0, 2]   h=0,2
-    public static DoubleFunction<Double> func_test = (x) -> 2*x/(Math.pow(x, 4) + 1);
+
     public static IO io = new IO();
     public static void main(String[] args) throws IOException {
         Map<Double, Double> points = new HashMap<>();
         Map<Integer, Double> thetas = new HashMap<>();
         points = io.readData( args.length==0 ? "" : args[0]);
-//        BigDecimal tempi = BigDecimal.valueOf(0);
 
-//        for (int i = 0; i < 11; i++){
-//            points.put(tempi.doubleValue(), Double.valueOf(new DecimalFormat("0.000").format(func_test.apply(tempi.doubleValue()))));
-//            System.out.print("x"+ i +" = "+tempi.doubleValue()+"\ty"+ i );
-//            System.out.format(" = %.2f\n",func_test.apply(tempi.doubleValue()));
-//            tempi = tempi.add(BigDecimal.valueOf(0.2));
-//        }
+
         double theta = Double.MAX_VALUE;
         int min = Integer.MAX_VALUE;
         int result = Integer.MAX_VALUE;
@@ -104,12 +96,13 @@ public class Main {
         double SY_Y_AVG2 = 0;
         for (double key: points.keySet()){
             SX_X_AVG_Y_Y_AVG += ((key-AVG_X)*(points.get(key)-AVG_Y));
-            SX_X_AVG2 = Math.pow(key-AVG_X,2);
-            SY_Y_AVG2 = Math.pow(points.get(key)-AVG_Y,2);
+            SX_X_AVG2 += Math.pow(key-AVG_X,2);
+            SY_Y_AVG2 += Math.pow(points.get(key)-AVG_Y,2);
         }
         R = SX_X_AVG_Y_Y_AVG/Math.sqrt(SX_X_AVG2*SY_Y_AVG2);
         System.out.format("r = %.3f\n", R); // Pirson coefficient
-        System.out.println("_____________________________________________________");
+        io.showResultsLinear(points, f_X1);
+
 
         System.out.println("SECOND APPROXIMATION(2nd polynomial)");
         double[] x2 = gaussianMethod(arr2, 3);
@@ -165,7 +158,6 @@ public class Main {
         }
         String x_text = String.valueOf(points.keySet());
         String y_text = String.valueOf(points.values());
-        System.out.println(y_text);
 
         String text = "calculator.setExpression({ id: 'linear', latex: 'f(x)="+x1[1]+"x+"+x1[0]+"' });\n" +
                 "calculator.setExpression({ id: 'polynom 2nd', latex: 'g(x)="+x2[2] +"x^2+"+x2[1]+"x+"+x2[0]+"' });\n" +
