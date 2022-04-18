@@ -46,13 +46,14 @@ public class IO {
         System.out.println(Arrays.toString(b));
     }
 
-    public void showResults(Map<Double, Double> points, DoubleFunction<Double> func) {
+    public double showResults(Map<Double, Double> points, DoubleFunction<Double> func) {
         double S = 0;
         for (Double key: points.keySet()){
             S += Math.pow(func.apply(key) - points.get(key),2);
         }
         System.out.format("S = %.3f\n", S);
         System.out.format("Theta = %.3f\n", (Math.sqrt(S/points.size())));
-        System.out.println();
+        System.out.println("_____________________________________________________");
+        return Math.sqrt(S/points.size());
     }
 }
