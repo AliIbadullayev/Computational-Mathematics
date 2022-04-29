@@ -2,29 +2,24 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
-import java.math.BigDecimal;
-import java.sql.SQLOutput;
-import java.text.DecimalFormat;
 import java.util.*;
-import java.util.List;
 import java.util.function.DoubleFunction;
 
 public class Main {
 
     public static IO io = new IO();
     public static void main(String[] args) throws IOException {
-        Map<Double, Double> points = new HashMap<>();
+        Map<Double, Double> points;
         Map<Integer, Double> thetas = new HashMap<>();
         points = io.readData( args.length==0 ? "" : args[0]);
 
 
         double theta = Double.MAX_VALUE;
         int min = Integer.MAX_VALUE;
-        int result = Integer.MAX_VALUE;
         int n = points.size();
-        double AVG_X = 0;
-        double AVG_Y = 0;
-        double R = 0;
+        double AVG_X;
+        double AVG_Y;
+        double R;
         double SX = 0;
         double SXX = 0;
         double SXY = 0;
@@ -199,7 +194,6 @@ public class Main {
         int stop = 0;
         double c;
         double s;
-        int swaps = 0;
 
 
         // Fulling matrix by result array which has got from data input
@@ -230,7 +224,6 @@ public class Main {
                 }
                 swapLines(arr, b,  i);
                 stop++;
-                swaps++;
             }
 
             for (int k = i+1; k < n; k++){
@@ -266,27 +259,6 @@ public class Main {
         System.out.println(Arrays.toString(x));
 
         return x;
-    }
-
-    private static double[] findDiscrepancy(double[][] arr, double[] x, double[] b) {
-        double[] result = new double[b.length];
-        double s = 0;
-        for (int i = 0; i<arr.length; i++){
-            for (int k = 0; k<arr.length; k++){
-                s = s + arr[i][k]*x[k];
-            }
-            result[i] = s - b[i];
-            s = 0;
-        }
-        return result;
-    }
-
-    private static double findDeterminant(double[][] arr, int swaps) {
-        double det = arr[0][0];
-        for (int i = 1; i<arr.length; i++){
-            det *= arr[i][i] ;
-        }
-        return det==-0?0: (double) (det * Math.pow(-1, swaps));
     }
 
     private static void swapLines(double[][] ints, double[] b, int pos) {
