@@ -1,0 +1,47 @@
+<html>
+<head>
+    <script src="https://www.desmos.com/api/v1.6/calculator.js?apiKey=dcb31709b452b1cf9dc26972add0fda6"></script>
+</head>
+
+<body>
+  <div id="calculator" style="width: 1200px; height: 800px;"></div>
+  	<script>
+    	var elt = document.getElementById('calculator');
+    	var calculator = Desmos.GraphingCalculator(elt);
+	    calculator.keypad=true;
+	    calculator.setExpression({ id: 'func_0', latex: '0.0\\{x<17.0\\}', color: Desmos.Colors.BLACK});
+calculator.setExpression({ id: 'func_1', latex: '0.05\\{17.0<x<=17.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_2', latex: '0.08\\{17.0<x<=18.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_3', latex: '0.15\\{18.0<x<=20.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_4', latex: '0.26\\{20.0<x<=22.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_5', latex: '0.27\\{22.0<x<=23.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_6', latex: '0.41\\{23.0<x<=24.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_7', latex: '0.56\\{24.0<x<=26.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_8', latex: '0.7\\{26.0<x<=28.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_9', latex: '0.82\\{28.0<x<=30.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_10', latex: '0.9\\{30.0<x<=32.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_11', latex: '0.94\\{32.0<x<=34.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_12', latex: '0.99\\{34.0<x<=35.0\\}', color: Desmos.Colors.BLACK });
+calculator.setExpression({ id: 'func_13', latex: '1.0\\{35.0<x<=36.0\\}', color: Desmos.Colors.BLACK });
+	calculator.setExpression({
+  type: 'table',
+  columns: [
+    {
+      latex: 'x',
+      values: [17.0, 19.11111111111111, 21.22222222222222, 23.333333333333332, 25.444444444444443, 27.555555555555554, 29.666666666666664, 31.777777777777775, 33.888888888888886, 36.0],
+    },
+    {
+      latex: 'y',
+      values: [0.0, 0.07, 0.19, 0.33, 0.48, 0.62, 0.74, 0.82, 0.92],
+      color: Desmos.Colors.BLACK,
+      columnMode: Desmos.ColumnModes.LINES
+    }
+  ]
+});
+calculator.setExpression({ id: 'a', latex: 'a=[0.037894736842105266, 0.03315789473684211, 0.05684210526315789, 0.06631578947368422, 0.07105263157894737, 0.06631578947368422, 0.05684210526315789, 0.037894736842105266, 0.04736842105263158]', color: Desmos.Colors.BLUE});
+calculator.setExpression({ id: 'b', latex: 'b=[17.0, 19.11111111111111, 21.22222222222222, 23.333333333333332, 25.444444444444443, 27.555555555555554, 29.666666666666664, 31.777777777777775, 33.888888888888886, 36.0]', color: Desmos.Colors.BLUE});
+calculator.setExpression({ id: 'area_y13', latex: '0<= y<= a\\{b<=x<=b+2.111111111111111\\}', color: Desmos.Colors.BLUE});
+calculator.setExpression({ id: 'area_x13', latex: 'b<=x<=b+2.111111111111111\\{0<=y<=a\\}', color: Desmos.Colors.BLUE});
+  </script>
+</body>
+</html>
