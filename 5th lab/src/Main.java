@@ -49,6 +49,11 @@ public class Main {
                 "    }\n" +
                 "  ]\n" +
                 "});\n" +
+                "calculator.setExpression({\n" +
+                "  id: 'pointA',\n" +
+                "  latex: '("+x+","+result+")',\n" +
+                "  pointStyle: Desmos.Styles.CROSS\n" +
+                "});"+
                 "  </script>\n" +
                 "</body>\n" +
                 "</html>";
@@ -95,6 +100,7 @@ public class Main {
                 }
                 sum /= findFactorial(j);
                 result += sum;
+                System.out.println(sum);
                 sum = 1;
             }
         } else {
@@ -109,7 +115,9 @@ public class Main {
                     sum *= t + k;
                 }
                 sum /= findFactorial(j);
+                System.out.println(t);
                 result += sum;
+
                 sum = 1;
             }
         }

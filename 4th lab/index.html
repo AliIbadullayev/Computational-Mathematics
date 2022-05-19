@@ -9,24 +9,30 @@
     	var elt = document.getElementById('calculator');
     	var calculator = Desmos.GraphingCalculator(elt);
 	    calculator.keypad=true;
-	    calculator.setExpression({ id: 'linear', latex: 'f(x)=1.6853827687383294x+1.216788476927183' });
-calculator.setExpression({ id: 'polynom 2nd', latex: 'g(x)=-0.058852924628655164x^2+2.197385944878237x+0.37425996066520434' });
-calculator.setExpression({ id: 'polynom 3rd', latex: 'h(x)=-0.006041946721091072x^3 +0.019107039841767988x^2+1.9118771220533892x+0.6397716678970694' });
-calculator.setExpression({ id: 'power', latex: 't(x)=e^{0.9329866476654225}*x^{0.8380361310314192}' });
-calculator.setExpression({ id: 'exp', latex: 'k(x)=e^{1.004647760759436}*e^{x*0.23455048222905692}' });
-calculator.setExpression({ id: 'log', latex: 'j(x)=\ ln(x)*5.6500370035357905+1.1988754276365259' });
+	    calculator.setExpression({ id: 'linear', latex: 'f(x)=1.3909090909090902x+3.2218181818181844' });
+calculator.setExpression({ id: 'polynom 2nd', latex: 'g(x)=-0.26859504132229484x^2+2.9756198347106286x+1.2906198347108875' });
+calculator.setExpression({ id: 'polynom 3rd', latex: 'h(x)=0.012521913348042939x^3 +-0.3794139744524712x^2+3.2714750813848172x+1.0607813673989224' });
+calculator.setExpression({ id: 'power', latex: 't(x)=e^{1.4228537862566764}*x^{0.5478951745727811}' });
+calculator.setExpression({ id: 'exp', latex: 'k(x)=e^{1.3575148150093703}*e^{x*0.20400599714323941}' });
+calculator.setExpression({ id: 'log', latex: 'j(x)=\ ln(x)*3.672668966461675+3.728858185387456' });
 	calculator.setExpression({
   type: 'table',
   columns: [
     {
       latex: 'x',
-      values: [4.5, 2.3, 3.7, 6.8, 1.1, 7.5, 5.4],
+      values: [2.4, 4.6, 1.3, 3.5],
     },
     {
       latex: 'y',
-      values: [8.91, 5.12, 7.74, 12.75, 2.73, 13.43, 10.59],
+      values: [6.9, 9.3, 4.7, 8.4],
       color: Desmos.Colors.BLUE,
       columnMode: Desmos.ColumnModes.POINTS
+    }
+  ]
+});
+  </script>
+</body>
+</html>S
     }
   ]
 });
