@@ -10,6 +10,7 @@ public class Main {
     final static int ТОЧНОСТЬ_ЭЙЛЕР = 1;
     final static int ТОЧНОСТЬ_МИЛНА = 4;
     public static void main(String[] args) throws IOException {
+        RandomAccessFile accessFile = new RandomAccessFile(new File("index.html"), "rw");
         IO io = new IO();
         //<a> <b> <h> <y0> <epsilon>
         double[] input_data = io.readData();
@@ -17,7 +18,7 @@ public class Main {
             System.err.println("Input Error!");
             System.exit(-1);
         }
-        RandomAccessFile accessFile = new RandomAccessFile(new File("index.html"), "rw");
+
         double a = input_data[0];
         double b = input_data[1];
         double h = input_data[2];
@@ -39,6 +40,7 @@ public class Main {
     }
 
     private static void milnMethod(double a, double b, double y0, double h, int after_point, double epsilon, RandomAccessFile accessFile) throws IOException {
+        System.out.println("Miln Method");
         ArrayList<ArrayList<Double>> pointsMiln = new ArrayList<ArrayList<Double>>(2);
 
         int n = (int) ((b - a) / h);
@@ -53,10 +55,12 @@ public class Main {
         double A = 0;
         double B = 0;
         for (int i = 3; i < n; i++){
+            // predict
             y.add(i+1, y.get(i-3) + 4d/3d * h * (2 * y1.get(i) - y1.get(i-1) + 2 * y1.get(i-2)));
             temp_x += h;
             x.add(i+1, temp_x);
             B = y.get(i+1);
+            // correct
             while (Math.abs(A-B) >= epsilon){
                 A = B;
                 y1.add(i+1, func(x.get(i+1), A));
@@ -65,7 +69,7 @@ public class Main {
             y.add(i+1, B);
             System.out.format(new StringBuilder().append("%.").append(after_point).append("f \t %.").append(after_point).append("f\t %.").append(after_point).append("f\n").toString(), temp_x, y.get(i), func(temp_x, y.get(i)));
         }
-        h /= 2;
+//        h /= 2;
         System.out.println("--------------------------");
 
         String x_text_1 = Arrays.toString(pointsMiln.get(2).toArray());
@@ -92,6 +96,7 @@ public class Main {
     }
 
     private static void eilerMethod(double a, double b, double y0, double h, int after_point, double epsilon, RandomAccessFile accessFile) throws IOException {
+        System.out.println("Eiler method");
         ArrayList<Double> y = new ArrayList<>();
         ArrayList<Double> y1 = new ArrayList<>();
         ArrayList<Double> x = new ArrayList<>();

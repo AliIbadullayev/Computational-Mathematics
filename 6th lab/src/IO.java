@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-import java.util.function.DoubleFunction;
 
 public class IO {
     public double[] readData() throws IOException {
